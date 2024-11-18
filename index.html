@@ -3,13 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
-    <script type="text/javascript">
-        // Redirect to your Adsterra link
-        window.location.replace("https://www.profitablecpmrate.com/iss70eqzxq?key=9ad4b65f2aa265e3daab708fbc2b0640");
-    </script>
+    <title>Earn Credits - Ad Page</title>
+    <script async src="https://www.google.com/adsense/search/ads.js"></script>
 </head>
 <body>
-    <p>If you are not redirected, <a href="https://www.profitablecpmrate.com/iss70eqzxq?key=9ad4b65f2aa265e3daab708fbc2b0640">click here</a>.</p>
+    <h1>Watch an Ad to Earn Credits</h1>
+    
+    <div id="ad-container">
+        <button id="show-ad-btn">Watch Ad</button>
+    </div>
+
+    <script>
+        // Initialize the AdMob rewarded video ad
+        const adUnitId = 'ca-app-pub-5400862216075229/6544460762'; // Replace with your actual Ad Unit ID
+        let rewardedAd;
+
+        // Check if AdMob is ready and set up the rewarded ad
+        function initializeAd() {
+            rewardedAd = new google.ads.rewardedVideoAd({
+                adUnitId: adUnitId,
+                onAdLoaded: function() {
+                    console.log('Ad loaded successfully!');
+                    document.getElementById('show-ad-btn').style.display = 'block';
+                },
+                onAdFailedToLoad: function(error) {
+                    console.log('Ad failed to load: ', error);
+                    alert('Could not load the ad. Try again later!');
+                },
+                onAdClosed: function() {
+                    console.log('Ad closed.');
+                    // Here, you can handle post-ad actions like rewarding credits
+                    updateUserCredits();
+                }
+            });
+
+            rewardedAd.load();
+        }
+
+        // Event to show the ad when the user clicks the button
+        document.getElementById('show-ad-btn').addEventListener('click', function() {
+            if (rewardedAd) {
+                rewardedAd.show();
+            }
+        });
+
+        // Function to update user credits (on ad completion)
+        function updateUserCredits() {
+            // Replace with your actual method to update credits via API
+            alert('You earned credits! Your balance is now updated.');
+        }
+
+        // Initialize the ad when the page loads
+        window.onload = function() {
+            initializeAd();
+        }
+    </script>
+
 </body>
 </html>
