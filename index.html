@@ -3,61 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earn Credits - Ad Page</title>
-    <script async src="https://www.google.com/adsense/search/ads.js"></script>
+    <title>Earn Credits - Watch Ad</title>
+    <!-- Firebase App (Core SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <!-- Firebase AdMob SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-ads.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #show-ad-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #show-ad-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <h1>Watch an Ad to Earn Credits</h1>
-    
-    <div id="ad-container">
-        <button id="show-ad-btn">Watch Ad</button>
-    </div>
+    <p>Click the button below to watch an ad and earn credits.</p>
+    <button id="show-ad-btn" style="display: none;">Watch Ad</button>
+    <p id="loading-message">Loading ad, please wait...</p>
 
     <script>
-        // Initialize the AdMob rewarded video ad
-        const adUnitId = 'ca-app-pub-5400862216075229/6544460762'; // Replace with your actual Ad Unit ID
+        // Your Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDEoOFO2qUm30XWET26GaZAb2e1E7xzTes",
+            authDomain: "admob-ad-page.firebaseapp.com",
+            projectId: "admob-ad-page",
+            storageBucket: "admob-ad-page.firebasestorage.app",
+            messagingSenderId: "284559436835",
+            appId: "1:284559436835:web:604a037de6f6fd957d9596"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Initialize AdMob
         let rewardedAd;
 
-        // Check if AdMob is ready and set up the rewarded ad
-        function initializeAd() {
-            rewardedAd = new google.ads.rewardedVideoAd({
-                adUnitId: adUnitId,
-                onAdLoaded: function() {
-                    console.log('Ad loaded successfully!');
-                    document.getElementById('show-ad-btn').style.display = 'block';
-                },
-                onAdFailedToLoad: function(error) {
-                    console.log('Ad failed to load: ', error);
-                    alert('Could not load the ad. Try again later!');
-                },
-                onAdClosed: function() {
-                    console.log('Ad closed.');
-                    // Here, you can handle post-ad actions like rewarding credits
-                    updateUserCredits();
-                }
-            });
+        // Your AdMob Rewarded Ad Unit ID
+        const adUnitId = "ca-app-pub-5400862216075229/6544460762"; // Replace with your AdMob Rewarded Ad Unit ID
+
+        // Load the rewarded video ad
+        function loadRewardedAd() {
+            rewardedAd = firebase.admob().rewardedVideoAd(adUnitId);
 
             rewardedAd.load();
+
+            rewardedAd.on('onAdLoaded', () => {
+                console.log("Ad loaded successfully.");
+                document.getElementById("show-ad-btn").style.display = "inline-block";
+                document.getElementById("loading-message").style.display = "none";
+            });
+
+            rewardedAd.on('onAdFailedToLoad', (error) => {
+                console.error("Failed to load ad:", error);
+                document.getElementById("loading-message").textContent = "Failed to load ad. Please refresh the page.";
+            });
+
+            rewardedAd.on('onAdClosed', () => {
+                console.log("Ad closed.");
+                rewardUser();
+            });
+
+            rewardedAd.on('onAdCompleted', () => {
+                console.log("Ad completed.");
+                rewardUser();
+            });
         }
 
-        // Event to show the ad when the user clicks the button
-        document.getElementById('show-ad-btn').addEventListener('click', function() {
+        // Show the rewarded ad when the button is clicked
+        document.getElementById("show-ad-btn").addEventListener("click", () => {
             if (rewardedAd) {
-                rewardedAd.show();
+                rewardedAd.show().catch((error) => {
+                    console.error("Error showing ad:", error);
+                });
+            } else {
+                console.error("Ad is not loaded yet.");
             }
         });
 
-        // Function to update user credits (on ad completion)
-        function updateUserCredits() {
-            // Replace with your actual method to update credits via API
-            alert('You earned credits! Your balance is now updated.');
+        // Function to reward the user after ad completion
+        function rewardUser() {
+            alert("Congratulations! You have earned credits.");
+            // Here you can trigger an API request to update the user's credits
+            fetch("https://your-server.com/update-credits", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ userId: "USER_ID", creditsEarned: 10 }) // Adjust userId and creditsEarned as needed
+            })
+            .then(response => response.json())
+            .then(data => console.log("Credits updated successfully:", data))
+            .catch(error => console.error("Error updating credits:", error));
         }
 
-        // Initialize the ad when the page loads
-        window.onload = function() {
-            initializeAd();
-        }
+        // Load the ad on page load
+        window.onload = loadRewardedAd;
     </script>
-
 </body>
 </html>
