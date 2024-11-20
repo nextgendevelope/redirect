@@ -1,56 +1,103 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earn Credits</title>
-    <!-- Firebase and AdSense SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earn Credits</title>
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-ads.js"></script>
+  
+  <script>
+    // Initialize Firebase
+    var firebaseConfig = {
+        apiKey: "AIzaSyDEoOFO2qUm30XWET26GaZAb2e1E7xzTes",
+        authDomain: "admob-ad-page.firebaseapp.com",
+        projectId: "admob-ad-page",
+        storageBucket: "admob-ad-page.firebasestorage.app",
+        messagingSenderId: "284559436835",
+        appId: "1:284559436835:web:604a037de6f6fd957d9596",
+        measurementId: "G-78CEF6XFRD"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  
+  <script>
+    // AdMob Initialization
+    var admob = firebase.admob();
+    var bannerAdTop;
+    var bannerAdBottom;
+    var videoAd;
+
+    function initializeAds() {
+      // Banner Ads
+      bannerAdTop = admob.createBanner({
+        adUnitId: 'ca-app-pub-5400862216075229/7140562412',
+        position: 'top',
+        size: 'SMART_BANNER'
+      });
+
+      bannerAdBottom = admob.createBanner({
+        adUnitId: 'ca-app-pub-5400862216075229/3652011028',
+        position: 'bottom',
+        size: 'SMART_BANNER'
+      });
+
+      // Rewarded Video Ad
+      videoAd = admob.createRewardedVideoAd('ca-app-pub-5400862216075229/6544460762');
+      
+      // Set up Rewarded Video Event Listeners
+      videoAd.on('rewarded', function() {
+        alert("Congratulations! You've earned 10 credits!");
+        // Here you should call a function to add 10 credits to the user account
+        // For example: addCredits(10);
+      });
+
+      videoAd.on('error', function(err) {
+        console.error('Error loading video ad:', err);
+      });
+    }
+
+    // Function to show the rewarded video ad when the user clicks the "Watch Ad" button
+    function showRewardedAd() {
+      videoAd.show()
+        .then(function() {
+          console.log('Video ad shown successfully');
+        })
+        .catch(function(err) {
+          console.error('Failed to show video ad:', err);
+        });
+    }
+
+    window.onload = function() {
+      initializeAds();
+      bannerAdTop.show();  // Display the top banner ad
+      bannerAdBottom.show();  // Display the bottom banner ad
+    };
+  </script>
 </head>
 <body>
-    <h1>Earn Credits by Watching a Video Ad</h1>
-    <div id="ad-container"></div>
 
-    <script>
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDEoOFO2qUm30XWET26GaZAb2e1E7xzTes",
-            authDomain: "admob-ad-page.firebaseapp.com",
-            projectId: "admob-ad-page",
-            storageBucket: "admob-ad-page.firebasestorage.app",
-            messagingSenderId: "284559436835",
-            appId: "1:284559436835:web:604a037de6f6fd957d9596",
-            measurementId: "G-78CEF6XFRD"
+  <!-- Banner Ads -->
+  <div id="bannerTopAd">
+    <!-- Top Banner Ad will be displayed here -->
+  </div>
 
-        };
+  <div style="text-align: center; margin: 50px;">
+    <h2>Earn Credits by Watching a Video Ad!</h2>
+    <button onclick="showRewardedAd()">Click here to earn 10 credits</button>
+  </div>
 
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const analytics = firebase.analytics(app);
+  <div id="bannerBottomAd">
+    <!-- Bottom Banner Ad will be displayed here -->
+  </div>
 
-        // Load AdMob Rewarded Ad
-        const adContainer = document.getElementById("ad-container");
-
-        // Replace with your rewarded ad unit ID from AdMob
-        const adUnitId = "ca-app-pub-<pub-5400862216075229>/<ca-app-pub-5400862216075229/6544460762>";
-
-        // AdSense script (or AdMob rewarded ad placeholder)
-        adContainer.innerHTML = `
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:320px;height:100px"
-                 data-ad-client="ca-app-pub-<
-
-pub-5400862216075229>"
-                 data-ad-slot="<ca-app-pub-5400862216075229/6544460762>"></ins>
-        `;
-        (adsbygoogle = window.adsbygoogle || []).push({});
-
-        // Log analytics event for tracking
-        analytics.logEvent("rewarded_ad_loaded", {
-            ad_unit_id: adUnitId
-        });
-    </script>
+  <!-- Firebase Ad Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-ads.js"></script>
+  
 </body>
 </html>
