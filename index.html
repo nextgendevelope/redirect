@@ -3,120 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earn Credits - Watch Ad</title>
-    <!-- Firebase App (Core SDK) -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <!-- Firebase AdMob SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-ads.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        #show-ad-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        #show-ad-btn:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <title>Earn Credits</title>
+    <!-- Firebase and AdSense SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
-    <h1>Watch an Ad to Earn Credits</h1>
-    <p>Click the button below to watch an ad and earn credits.</p>
-    <button id="show-ad-btn" style="display: none;">Watch Ad</button>
-    <p id="loading-message">Loading ad, please wait...</p>
+    <h1>Earn Credits by Watching a Video Ad</h1>
+    <div id="ad-container"></div>
 
     <script>
-        // Your Firebase configuration
-        var firebaseConfig = {
+        // Firebase configuration
+        const firebaseConfig = {
             apiKey: "AIzaSyDEoOFO2qUm30XWET26GaZAb2e1E7xzTes",
             authDomain: "admob-ad-page.firebaseapp.com",
             projectId: "admob-ad-page",
             storageBucket: "admob-ad-page.firebasestorage.app",
             messagingSenderId: "284559436835",
-            appId: "1:284559436835:web:604a037de6f6fd957d9596"
+            appId: "1:284559436835:web:604a037de6f6fd957d9596",
+            measurementId: "G-78CEF6XFRD"
+
         };
 
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        const app = firebase.initializeApp(firebaseConfig);
+        const analytics = firebase.analytics(app);
 
-        // Initialize AdMob
-        let rewardedAd;
+        // Load AdMob Rewarded Ad
+        const adContainer = document.getElementById("ad-container");
 
-        // Your AdMob Rewarded Ad Unit ID
-        const adUnitId = "ca-app-pub-5400862216075229/6544460762"; // Replace with your AdMob Rewarded Ad Unit ID
+        // Replace with your rewarded ad unit ID from AdMob
+        const adUnitId = "ca-app-pub-<pub-5400862216075229>/<ca-app-pub-5400862216075229/6544460762>";
 
-        // Load the rewarded video ad
-        function loadRewardedAd() {
-            rewardedAd = firebase.admob().rewardedVideoAd(adUnitId);
+        // AdSense script (or AdMob rewarded ad placeholder)
+        adContainer.innerHTML = `
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:320px;height:100px"
+                 data-ad-client="ca-app-pub-<
 
-            rewardedAd.load();
+pub-5400862216075229>"
+                 data-ad-slot="<ca-app-pub-5400862216075229/6544460762>"></ins>
+        `;
+        (adsbygoogle = window.adsbygoogle || []).push({});
 
-            rewardedAd.on('onAdLoaded', () => {
-                console.log("Ad loaded successfully.");
-                document.getElementById("show-ad-btn").style.display = "inline-block";
-                document.getElementById("loading-message").style.display = "none";
-            });
-
-            rewardedAd.on('onAdFailedToLoad', (error) => {
-                console.error("Failed to load ad:", error);
-                document.getElementById("loading-message").textContent = "Failed to load ad. Please refresh the page.";
-            });
-
-            rewardedAd.on('onAdClosed', () => {
-                console.log("Ad closed.");
-                rewardUser();
-            });
-
-            rewardedAd.on('onAdCompleted', () => {
-                console.log("Ad completed.");
-                rewardUser();
-            });
-        }
-
-        // Show the rewarded ad when the button is clicked
-        document.getElementById("show-ad-btn").addEventListener("click", () => {
-            if (rewardedAd) {
-                rewardedAd.show().catch((error) => {
-                    console.error("Error showing ad:", error);
-                });
-            } else {
-                console.error("Ad is not loaded yet.");
-            }
+        // Log analytics event for tracking
+        analytics.logEvent("rewarded_ad_loaded", {
+            ad_unit_id: adUnitId
         });
-
-        // Function to reward the user after ad completion
-        function rewardUser() {
-            alert("Congratulations! You have earned credits.");
-            // Here you can trigger an API request to update the user's credits
-            fetch("https://your-server.com/update-credits", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ userId: "USER_ID", creditsEarned: 10 }) // Adjust userId and creditsEarned as needed
-            })
-            .then(response => response.json())
-            .then(data => console.log("Credits updated successfully:", data))
-            .catch(error => console.error("Error updating credits:", error));
-        }
-
-        // Load the ad on page load
-        window.onload = loadRewardedAd;
     </script>
 </body>
 </html>
