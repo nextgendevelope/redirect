@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Prompt2Pic - A Telegram bot for generating AI images and earning credits.">
+    <meta name="description" content="Prompt2Pic - AI image generation and earn credits through ads">
     <title>Prompt2Pic - AI Image Generator</title>
     <style>
         body {
@@ -15,134 +15,128 @@
         }
         header {
             background: #4CAF50;
-            color: #fff;
-            padding: 1.5rem 0;
+            color: white;
+            padding: 1.5rem;
             text-align: center;
         }
         main {
-            padding: 2rem;
             max-width: 900px;
-            margin: 0 auto;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-            margin-top: 2rem;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         h1, h2 {
             color: #333;
         }
         .button {
             display: inline-block;
-            padding: 0.75rem 1.5rem;
-            color: #fff;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: white;
             background: #4CAF50;
             border: none;
             border-radius: 5px;
-            text-decoration: none;
-            font-size: 1rem;
             cursor: pointer;
+            text-decoration: none;
         }
         .button:hover {
             background: #45a049;
         }
-        .demo-section {
-            margin: 2rem 0;
+        .earn-credits {
             text-align: center;
-            background: #f0f0f0;
-            padding: 1.5rem;
-            border-radius: 10px;
+            margin-top: 20px;
         }
-        .demo-section input[type="text"] {
-            width: 70%;
-            padding: 0.75rem;
-            margin-right: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        .demo-section .button {
-            padding: 0.75rem 1rem;
-        }
-        .testimonial {
-            margin: 2rem 0;
-        }
-        .testimonial blockquote {
-            font-style: italic;
-            margin: 1rem 0;
-            color: #555;
-            border-left: 5px solid #4CAF50;
-            padding-left: 1rem;
-        }
-        .contact-section {
-            margin: 2rem 0;
-            text-align: center;
+        .response {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #4CAF50;
             background: #e7f5e7;
-            padding: 1.5rem;
-            border-radius: 10px;
+            border-radius: 5px;
         }
-        .contact-section a {
-            color: #4CAF50;
-            text-decoration: none;
+        #generated-image {
+            max-width: 100%;
+            margin-top: 20px;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to Prompt2Pic</h1>
-        <p>Your ultimate AI-powered image generator bot!</p>
+        <h1>Prompt2Pic - AI Image Generator</h1>
+        <p>Generate images with AI and earn credits by watching ads!</p>
     </header>
     <main>
-        <h2>About Prompt2Pic</h2>
-        <p>
-            Prompt2Pic is a revolutionary Telegram bot that allows users to generate stunning AI-powered images.
-            Simply provide a text description, and let the magic happen! Whether you're creating art for fun, 
-            designing graphics for work, or just experimenting, Prompt2Pic has you covered.
-        </p>
-
-        <h2>Demo - Try It Out!</h2>
-        <div class="demo-section">
-            <p>Type a description below and click "Generate" to see the magic!</p>
-            <form action="#" method="post">
-                <input type="text" placeholder="Describe your image (e.g., a sunset over the ocean)" required>
-                <button class="button" type="submit">Generate</button>
-            </form>
-            <p><small>This is a demo. Join our Telegram bot for the full experience!</small></p>
+        <h2>Generate an Image</h2>
+        <form id="generate-form">
+            <label for="prompt">Enter your prompt:</label><br>
+            <input type="text" id="prompt" name="prompt" placeholder="e.g., A futuristic city at sunset" required style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc;"><br>
+            <button class="button" type="submit">Generate Image</button>
+        </form>
+        <div id="response-section" class="response" style="display: none;">
+            <p><strong>Generated Image:</strong></p>
+            <img id="generated-image" alt="Generated AI Image">
         </div>
-
-        <h2>Why Choose Us?</h2>
-        <ul>
-            <li>High-quality AI-generated images in seconds.</li>
-            <li>Easy-to-use interface designed for everyone.</li>
-            <li>Earn credits through various activities, making it cost-effective!</li>
-        </ul>
-
-        <h2>What Our Users Say</h2>
-        <div class="testimonial">
-            <blockquote>
-                "Prompt2Pic has transformed how I create digital art. It's quick, fun, and incredibly powerful!"
-                <br><strong>- A Happy User</strong>
-            </blockquote>
-            <blockquote>
-                "I was amazed by the quality of the AI-generated images. This bot is a game-changer!"
-                <br><strong>- Another User</strong>
-            </blockquote>
+        <h2>Earn Credits</h2>
+        <div class="earn-credits">
+            <p>Watch an ad to earn 10 credits!</p>
+            <button class="button" id="watch-ad">Watch Ad</button>
+            <p id="credit-update" style="margin-top: 10px; color: green; display: none;">You earned 10 credits!</p>
         </div>
-
-        <h2>Join Us</h2>
-        <p>
-            Ready to experience the future of AI-generated images? 
-            <a class="button" href="https://t.me/Prompt2PicBot">Join Our Telegram Bot</a>
-        </p>
     </main>
-    <footer>
-        <p>&copy; 2024 Prompt2Pic. All Rights Reserved.</p>
-        <p><a href="https://t.me/Prompt2PicBot" style="color: #fff;">Contact Us</a></p>
-    </footer>
+    <script>
+        // Hugging Face API Key
+        const HF_API_KEY = "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";
+        const HF_API_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-3.5-large-turbo";
+
+        // Image Generation Handler
+        const generateForm = document.getElementById('generate-form');
+        const responseSection = document.getElementById('response-section');
+        const generatedImage = document.getElementById('generated-image');
+
+        generateForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const prompt = document.getElementById('prompt').value;
+
+            // Show loading message
+            responseSection.style.display = 'block';
+            responseSection.innerHTML = `<p>Generating your image... Please wait.</p>`;
+
+            try {
+                const response = await fetch(HF_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${HF_API_KEY}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ inputs: prompt })
+                });
+
+                if (!response.ok) throw new Error('Failed to generate the image.');
+
+                const blob = await response.blob();
+                const imageURL = URL.createObjectURL(blob);
+
+                // Display generated image
+                generatedImage.src = imageURL;
+                generatedImage.alt = "Generated image for prompt: " + prompt;
+                responseSection.innerHTML = `<p><strong>Generated Image:</strong></p>`;
+                responseSection.appendChild(generatedImage);
+            } catch (error) {
+                responseSection.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        });
+
+        // Watch Ad Handler
+        const watchAdButton = document.getElementById('watch-ad');
+        const creditUpdate = document.getElementById('credit-update');
+
+        watchAdButton.addEventListener('click', () => {
+            // Simulate ad watching
+            alert('Simulating ad watching...');
+            creditUpdate.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
