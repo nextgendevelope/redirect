@@ -3,85 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompt2Pic - AI Image Generation</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Prompt2Pic Bot - AI Image Generation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        h1, h2 {
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .bot-dp {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+            border: 5px solid #0088cc;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .image-row img {
+            width: 30%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .watch-ad-container {
+            margin-top: 20px;
+        }
+
+        .bot-description {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #555;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .telegram-button {
+            display: inline-block;
+            background-color: #0088cc;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .telegram-button:hover {
+            background-color: #006f99;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Top Menu -->
-    <nav>
-        <ul>
-            <li><a href="#earn-credits">Earn Credits</a></li>
-            <li><a href="#privacy-policy" onclick="loadPrivacyPolicy()">Privacy Policy</a></li>
-            <li><a href="#terms-of-service" onclick="loadTermsOfService()">Terms of Service</a></li>
-        </ul>
-    </nav>
+    <div class="container">
+        <!-- Bot DP (Profile Picture) -->
+        <img src="tgdp.webp" alt="Prompt2Pic Bot DP" class="bot-dp">
 
-    <!-- Welcome Section (Bot DP and Name) -->
-    <div class="welcome-section" style="text-align: center;">
-        <img src="tgdp.webp" alt="Prompt2Pic Bot" style="width: 150px; height: 150px; border-radius: 50%;"/>
-        <h1>Welcome to Prompt2Pic!</h1>
-    </div>
+        <h1>Discover Incredible AI-Generated Artworks</h1>
+        <p>Your creative ideas, brought to life by AI.</p>
 
-    <!-- Discover AI-Generated Artworks Section -->
-    <div id="discover-artworks" class="artworks-section">
-        <div class="box">
-            <h2>Discover Incredible AI-Generated Artworks</h2>
+        <div class="buttons-container">
+            <a href="#earn-credits" class="button">Earn Credits</a>
+            <a href="privacy-policy.html" class="button">Privacy Policy</a>
+            <a href="terms-of-service.html" class="button">Terms of Service</a>
         </div>
 
-        <!-- Display Images -->
-        <div class="image-gallery">
-            <img src="a1.jpg" alt="Generated Art 1">
-            <img src="a2.jpg" alt="Generated Art 2">
-            <img src="a3.jpg" alt="Generated Art 3">
-            <img src="a1.jpg" alt="Generated Art 4">
-            <img src="a2.jpg" alt="Generated Art 5">
-            <img src="a3.jpg" alt="Generated Art 6">
+        <!-- Image Gallery -->
+        <h2>AI Generated Art Examples</h2>
+        <div class="image-row">
+            <img src="a1.jpg" alt="Example 1">
+            <img src="a2.jpg" alt="Example 2">
+            <img src="a3.jpg" alt="Example 3">
+            <img src="a4.jpg" alt="Example 4">
+            <img src="a5.jpg" alt="Example 5">
+            <img src="a6.jpg" alt="Example 6">
         </div>
+
+        <!-- Watch Ad Section -->
+        <div class="watch-ad-container">
+            <button class="button">Watch Ad for 10 Credits</button>
+        </div>
+
+        <!-- Bot Description -->
+        <div class="bot-description">
+            <h2>About Prompt2Pic Bot</h2>
+            <p>Prompt2Pic Bot is an AI-powered image generation tool that allows you to create stunning and unique images simply by entering a description. Whether you're looking to generate artwork, create social media content, or experiment with new ideas, our bot is here to bring your visions to life. Just provide a prompt and let AI do the rest!</p>
+        </div>
+
+        <!-- Telegram Bot Link -->
+        <a href="https://t.me/Prompt2picbot" class="telegram-button">Join Telegram Bot</a>
+
     </div>
 
-    <!-- Earn Credits Section -->
-    <section id="earn-credits" class="earn-credits-section">
-        <h2>Earn 10 Credits</h2>
-        <button onclick="watchAd()">Watch Ad</button>
-    </section>
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Prompt2Pic Bot. All rights reserved.</p>
+    </div>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="faq-section">
-        <h2>Frequently Asked Questions</h2>
-        <ul>
-            <li><strong>How do I use the bot?</strong>
-                <p>To use the bot, simply type your image description in the Telegram bot, and it will generate the image for you. You can use credits to generate images, and you can earn credits by interacting with the bot or watching ads.</p>
-            </li>
-            <li><strong>What is the credit system?</strong>
-                <p>Credits are required to generate images through the bot. You can earn credits by watching ads, or you can purchase them. Users with a premium subscription may have access to additional features and content.</p>
-            </li>
-            <li><strong>How can I earn credits?</strong>
-                <p>You can earn credits by watching ads on the website or through the bot. You can also participate in promotional activities, such as following social media pages, to earn extra credits.</p>
-            </li>
-        </ul>
-    </section>
-
-    <!-- Copyright Information -->
-    <footer>
-        <p>© 2024 Prompt2Pic. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        // Function to load Privacy Policy
-        function loadPrivacyPolicy() {
-            window.location.href = 'privacy-policy.html';
-        }
-
-        // Function to load Terms of Service
-        function loadTermsOfService() {
-            window.location.href = 'terms-of-service.html';
-        }
-
-        // Simulate ad watch and credit earning (For demonstration purposes)
-        function watchAd() {
-            alert('You earned 10 credits by watching an ad!');
-        }
-    </script>
 </body>
 </html>
