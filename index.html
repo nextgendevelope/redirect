@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            color: #333;
         }
 
         /* Header Styles */
@@ -43,6 +44,7 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: bold;
+            text-transform: uppercase;
         }
 
         .menu-bar a:hover {
@@ -63,6 +65,8 @@
             color: #333;
             font-size: 2rem;
             margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .bot-section {
@@ -99,15 +103,23 @@
             background-color: #0097a7;
         }
 
-        /* Example Images Section */
-        .examples {
+        /* Image Gallery Section */
+        .gallery-section {
             margin-top: 40px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        .examples img {
+        .gallery-section h3 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .gallery-section img {
             width: 280px;
             height: 180px;
             margin: 10px;
@@ -116,7 +128,7 @@
             transition: transform 0.3s ease;
         }
 
-        .examples img:hover {
+        .gallery-section img:hover {
             transform: scale(1.05);
         }
 
@@ -215,15 +227,15 @@
             <button onclick="window.location.href='https://t.me/Prompt2PicBot'">Join Telegram Bot</button>
         </div>
 
-        <!-- Example Images Section -->
-        <div class="examples">
-            <h3>Examples of Generated Images</h3>
-            <img src="a1.jpg" alt="Example Image 1">
-            <img src="a2.jpg" alt="Example Image 2">
-            <img src="a3.jpg" alt="Example Image 3">
-            <img src="a4.jpg" alt="Example Image 4">
-            <img src="a5.jpg" alt="Example Image 5">
-            <img src="a6.jpg" alt="Example Image 6">
+        <!-- Image Gallery Section -->
+        <div class="gallery-section">
+            <h3>Stunning Examples of AI-Generated Images</h3>
+            <img src="a1.jpg" alt="AI Image 1">
+            <img src="a2.jpg" alt="AI Image 2">
+            <img src="a3.jpg" alt="AI Image 3">
+            <img src="a4.jpg" alt="AI Image 4">
+            <img src="a5.jpg" alt="AI Image 5">
+            <img src="a6.jpg" alt="AI Image 6">
         </div>
 
         <!-- Earn Credits Section -->
