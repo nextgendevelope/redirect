@@ -8,7 +8,7 @@
         /* Global Styles */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f7fb;
+            background-color: #fff8f0;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -17,23 +17,23 @@
 
         /* Header Styles */
         header {
-            background-color: #3b9fcf;
+            background-color: #ff6f61;
             color: white;
-            padding: 30px;
+            padding: 40px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         /* Menu Bar */
         .menu-bar {
-            background-color: #444;
+            background-color: #333;
             padding: 12px 0;
             text-align: center;
         }
@@ -48,7 +48,7 @@
         }
 
         .menu-bar a:hover {
-            color: #f4f7fb;
+            color: #ff6f61;
             text-decoration: underline;
         }
 
@@ -63,7 +63,7 @@
 
         .content h2 {
             color: #333;
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -71,13 +71,18 @@
 
         .bot-section {
             margin-bottom: 40px;
+            background-color: #ffecd4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .bot-section img {
             border-radius: 50%;
             width: 120px;
             height: 120px;
-            border: 5px solid #3b9fcf;
+            border: 5px solid #ff6f61;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
@@ -88,7 +93,7 @@
         }
 
         .bot-section button {
-            background-color: #00b8d4;
+            background-color: #ff6f61;
             color: white;
             padding: 12px 25px;
             font-size: 1rem;
@@ -100,7 +105,7 @@
         }
 
         .bot-section button:hover {
-            background-color: #0097a7;
+            background-color: #e84d3f;
         }
 
         /* Image Gallery Section */
@@ -112,7 +117,7 @@
         }
 
         .gallery-section h3 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #333;
             margin-bottom: 20px;
             text-transform: uppercase;
@@ -146,7 +151,7 @@
         }
 
         .earn-credits-section button {
-            background-color: #f0ad4e;
+            background-color: #ffb74d;
             color: white;
             padding: 12px 25px;
             font-size: 1rem;
@@ -157,13 +162,13 @@
         }
 
         .earn-credits-section button:hover {
-            background-color: #ec971f;
+            background-color: #ff9800;
         }
 
         /* FAQ Section */
         .faq {
             margin-top: 50px;
-            background-color: #f7f7f7;
+            background-color: #ffecd4;
             padding: 30px;
             width: 90%;
             max-width: 800px;
@@ -201,6 +206,11 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* Hidden Sections */
+        .hidden-section {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -229,7 +239,7 @@
 
         <!-- Image Gallery Section -->
         <div class="gallery-section">
-            <h3>Stunning Examples of AI-Generated Images</h3>
+            <h3>Discover Incredible AI-Generated Artworks</h3>
             <img src="a1.jpg" alt="AI Image 1">
             <img src="a2.jpg" alt="AI Image 2">
             <img src="a3.jpg" alt="AI Image 3">
@@ -239,40 +249,48 @@
         </div>
 
         <!-- Earn Credits Section -->
-        <div class="earn-credits-section">
+        <div class="earn-credits-section hidden-section" id="earnCredits">
             <h2>Earn 10 Credits</h2>
             <p>Watch an ad to earn 10 credits, which you can use to generate images on our Telegram bot.</p>
             <button onclick="alert('Redirecting to watch ad...')">Watch Ad</button>
         </div>
 
+        <!-- Privacy Policy Section -->
+        <div class="hidden-section" id="privacyPolicy">
+            <h3>Privacy Policy for Prompt2Pic Bot</h3>
+            <p><strong>Effective Date:</strong> [Insert Date]</p>
+            <p>At Prompt2Pic Bot, we value the privacy of our users and are committed to protecting the information you share with us...</p>
+            <p>For full details, please review the entire privacy policy above.</p>
+        </div>
+
+        <!-- Terms of Service Section -->
+        <div class="hidden-section" id="termsOfService">
+            <h3>Terms of Service for Prompt2Pic Bot</h3>
+            <p><strong>Effective Date:</strong> [Insert Date]</p>
+            <p>By using the Prompt2Pic Bot ("the Bot"), you agree to these Terms of Service. Please read them carefully...</p>
+            <p>For full details, please review the entire terms of service above.</p>
+        </div>
+
         <!-- FAQ Section -->
         <div class="faq">
-            <h3>Frequently Asked Questions</h3>
-            <p><strong>How do I earn credits?</strong> You can earn credits by watching ads or using our Telegram bot to generate images.</p>
-            <p><strong>How can I generate images?</strong> Join our Telegram bot, upload a selfie, and describe the image you want!</p>
+            <h3>FAQs</h3>
+            <p><strong>Q: How do I use the bot?</strong><br>A: Simply join our Telegram bot and follow the instructions to upload a selfie or provide an image prompt.</p>
+            <p><strong>Q: How do I earn credits?</strong><br>A: You can earn credits by watching ads or by purchasing them directly through the bot.</p>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Prompt2Pic. All rights reserved. <a href="mailto:prompt2pic@gmail.com">Contact Us</a></p>
+        <p>&copy; 2024 Prompt2Pic Bot | <a href="javascript:void(0)" onclick="showSection('privacyPolicy')">Privacy Policy</a> | <a href="javascript:void(0)" onclick="showSection('termsOfService')">Terms of Service</a></p>
     </footer>
 
     <script>
         function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.remove('active'));
-            
-            // Show the clicked section
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.classList.add('active');
-            }
+            document.querySelectorAll('.hidden-section').forEach(function(section) {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
         }
-
-        // Initially show the Earn Credits section
-        showSection('earnCredits');
     </script>
 
 </body>
