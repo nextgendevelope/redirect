@@ -13,27 +13,44 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
+            text-align: center;
         }
 
-        /* Layout container */
+        /* Centered welcome section */
+        .header {
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .header img {
+            border-radius: 50%;
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        /* Main container for page sections */
         .main-container {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
             padding: 20px;
         }
 
-        /* Left section for image generation */
+        /* Section for generating image */
         .generate-image-section {
-            flex: 1 1 40%;
-            padding: 20px;
-            background: white;
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            background-color: white;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
             border-radius: 8px;
-            margin-right: 20px;
-        }
-
-        .generate-image-section h2 {
-            color: #4CAF50;
         }
 
         .generate-image-section button {
@@ -57,16 +74,18 @@
             border-radius: 8px;
         }
 
-        /* Right section for other content (ads, bot info, examples) */
-        .right-section {
-            flex: 1 1 55%;
-            padding: 20px;
-            background: white;
+        /* Section for other content (ads, bot info, examples) */
+        .content-section {
+            text-align: center;
+            margin-top: 20px;
+            background-color: white;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
             border-radius: 8px;
+            width: 80%;
         }
 
-        .right-section h2 {
+        .content-section h2 {
             color: #4CAF50;
         }
 
@@ -84,11 +103,6 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .earn-credits {
-            margin-top: 20px;
-            text-align: center;
-        }
-
         .earn-credits button {
             background-color: #4CAF50;
             color: white;
@@ -97,15 +111,11 @@
             font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 20px;
         }
 
         .earn-credits button:hover {
             background-color: #45a049;
-        }
-
-        .join-telegram {
-            margin-top: 20px;
-            text-align: center;
         }
 
         .join-telegram a {
@@ -116,22 +126,28 @@
             border-radius: 5px;
             font-size: 16px;
             display: inline-block;
+            margin-top: 20px;
         }
 
         .join-telegram a:hover {
             background-color: #006699;
         }
+
     </style>
     <script>
         // Track if the image generation has been used
         document.addEventListener("DOMContentLoaded", function () {
             const generateImageSection = document.getElementById("generateImageSection");
-            const rightSection = document.getElementById("rightSection");
+            const contentSection = document.getElementById("contentSection");
             const isImageGenerated = localStorage.getItem("imageGenerated");
 
+            // If the user has generated an image before, hide the generate section
             if (isImageGenerated) {
                 generateImageSection.style.display = "none";
-                rightSection.style.flex = "1 1 100%";  // Make right section take full width
+                contentSection.style.display = "block"; // Show the content section
+            } else {
+                generateImageSection.style.display = "block";
+                contentSection.style.display = "none"; // Hide the content section initially
             }
         });
 
@@ -160,8 +176,10 @@
 
                 // Store the image generation status
                 localStorage.setItem("imageGenerated", "true");
+
+                // Hide the generate section and show the content section
                 document.getElementById("generateImageSection").style.display = "none";
-                document.getElementById("rightSection").style.flex = "1 1 100%"; // Right section takes full width
+                document.getElementById("contentSection").style.display = "block";
             } else {
                 alert("Failed to generate image. Please try again later.");
             }
@@ -169,32 +187,32 @@
     </script>
 </head>
 <body>
-    <!-- Header with Bot DP -->
+    <!-- Welcome Section with Bot DP -->
     <div class="header">
-        <img src="tgdp.webp" alt="Prompt2Pic Bot" style="width: 100px; border-radius: 50%; margin: 20px;">
+        <img src="tgdp.webp" alt="Prompt2Pic Bot">
         <h1>Welcome to Prompt2Pic Bot</h1>
     </div>
 
-    <!-- Main content section with left and right sections -->
+    <!-- Main content section -->
     <div class="main-container">
-        <!-- Left section for image generation -->
+        <!-- Generate Image Section -->
         <div class="generate-image-section" id="generateImageSection">
             <h2>Generate Your First AI Image</h2>
             <button id="generateButton" onclick="generateImage()">Generate Image</button>
             <img id="generatedImage" src="" alt="Generated AI Image">
         </div>
 
-        <!-- Right section for other content (ads, bot info, examples) -->
-        <div class="right-section" id="rightSection">
+        <!-- Other Content Section (Ads, Bot Info, Examples) -->
+        <div class="content-section" id="contentSection">
             <h2>Explore Our AI-Generated Images</h2>
             <div class="examples">
-                <img src="ia6.jpg" alt="Example 1">
+                <img src="a6.jpg" alt="Example 1">
                 <img src="a4.jpg" alt="Example 2">
                 <img src="a2.jpg" alt="Example 3">
             </div>
 
             <div class="earn-credits">
-                <button>Earn Credits</button>
+                <button>Watch Ad to Earn 10 Credits</button>
             </div>
 
             <div class="join-telegram">
@@ -202,6 +220,8 @@
                 <p>Generate unlimited images and enjoy more features on Telegram!</p>
                 <a href="https://t.me/Prompt2PicBot" target="_blank">Join Telegram Bot</a>
             </div>
+
+            <p>Prompt2Pic allows you to generate unique AI-powered images. Just give a prompt, and watch as your creative ideas come to life!</p>
         </div>
     </div>
 </body>
