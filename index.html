@@ -67,7 +67,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* Ad earning section */
+        /* Earn Credits Section */
         .earn-credits {
             margin-top: 20px;
             text-align: center;
@@ -87,7 +87,7 @@
             background-color: #45a049;
         }
 
-        /* Join Telegram section */
+        /* Join Telegram Section */
         .join-telegram {
             margin-top: 20px;
             text-align: center;
@@ -106,7 +106,69 @@
         .join-telegram a:hover {
             background-color: #006699;
         }
+
+        /* Generate Image Section */
+        .generate-image {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .generate-image button {
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .generate-image button:hover {
+            background-color: #E64A19;
+        }
     </style>
+    <script>
+        // Track if the image generation has been used
+        document.addEventListener("DOMContentLoaded", function () {
+            const generateImageSection = document.getElementById("generateImageSection");
+            const isImageGenerated = localStorage.getItem("imageGenerated");
+
+            if (isImageGenerated) {
+                generateImageSection.style.display = "none";
+            }
+        });
+
+        // Function to handle image generation
+        async function generateImage() {
+            const generateButton = document.getElementById("generateButton");
+            generateButton.innerText = "Generating...";
+            generateButton.disabled = true;
+
+            const response = await fetch("https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-3.5-large-turbo", {
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer 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",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    inputs: "A magical sunset over a futuristic city with flying cars",
+                })
+            });
+
+            if (response.ok) {
+                const blob = await response.blob();
+                const imgURL = URL.createObjectURL(blob);
+                document.getElementById("generatedImage").src = imgURL;
+                document.getElementById("generatedImage").style.display = "block";
+
+                // Store the image generation status
+                localStorage.setItem("imageGenerated", "true");
+                document.getElementById("generateImageSection").style.display = "none";
+            } else {
+                alert("Failed to generate image. Please try again later.");
+            }
+        }
+    </script>
 </head>
 <body>
     <!-- Header with Bot DP -->
@@ -125,11 +187,11 @@
             <img src="a2.jpg" alt="Lonely Robot">
         </div>
 
-        <!-- Earn Credits Section -->
-        <div class="earn-credits">
-            <h2>Earn Credits</h2>
-            <p>Watch an ad to earn 10 credits and create your own images!</p>
-            <button onclick="alert('This will redirect to an ad.')">Watch Ad</button>
+        <!-- Generate Image Section -->
+        <div class="generate-image" id="generateImageSection">
+            <h2>Generate Your First AI Image</h2>
+            <button id="generateButton" onclick="generateImage()">Generate Image</button>
+            <img id="generatedImage" src="" alt="Generated AI Image" style="display: none; margin-top: 20px; border-radius: 8px; width: 100%; max-width: 400px;">
         </div>
 
         <!-- Join Telegram Bot Section -->
