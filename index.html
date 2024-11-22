@@ -1,167 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Prompt2Pic - AI image generation and earn credits through ads">
-    <title>Prompt2Pic - AI Image Generator</title>
+    <title>Welcome to Prompt2Pic - AI Art Showcase</title>
+    <meta name="description" content="Prompt2Pic - Explore stunning AI-generated images and connect to our Telegram bot for personalized creations.">
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
+            text-align: center;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #f8f8f8;
         }
         header {
-            background: #4CAF50;
+            background-color: #4caf50;
             color: white;
-            padding: 1.5rem;
+            padding: 20px 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .examples {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .example {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            width: 300px;
             text-align: center;
         }
-        main {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2 {
-            color: #333;
+        .example img {
+            max-width: 100%;
+            border-radius: 10px;
         }
         .button {
             display: inline-block;
             padding: 10px 20px;
-            font-size: 1rem;
+            margin-top: 10px;
             color: white;
-            background: #4CAF50;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            background-color: #4caf50;
             text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
         }
         .button:hover {
-            background: #45a049;
-        }
-        .response, .credits-section {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 5px;
-        }
-        .response {
-            border: 1px solid #4CAF50;
-            background: #e7f5e7;
-        }
-        .credits-section {
-            text-align: center;
-            border: 1px solid #ccc;
-            background: #f9f9f9;
-        }
-        #generated-image {
-            max-width: 100%;
-            margin-top: 20px;
-            border-radius: 8px;
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Prompt2Pic - AI Image Generator</h1>
-        <p>Generate an image with AI or join our Telegram bot for unlimited access!</p>
+        <h1>Welcome to Prompt2Pic</h1>
+        <p>Your gateway to stunning AI-generated art and creative possibilities!</p>
     </header>
-    <main>
-        <div id="generate-section">
-            <h2>Generate an Image</h2>
-            <form id="generate-form">
-                <label for="prompt">Enter your prompt:</label><br>
-                <input type="text" id="prompt" name="prompt" placeholder="e.g., A futuristic city at sunset" required style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc;"><br>
-                <button class="button" type="submit">Generate Image</button>
-            </form>
+    <div class="container">
+        <h2>Explore Our AI-Generated Art</h2>
+        <div class="examples">
+            <div class="example">
+                <img src="a6.jpg" alt="Baby Dragon">
+                <p><b>Baby Dragon</b>: A cute baby dragon resting in a nest of colorful crystals.</p>
+            </div>
+            <div class="example">
+                <img src="a4.jpg" alt="Warrior Princess">
+                <p><b>Warrior Princess</b>: A powerful princess in armor leading her army.</p>
+            </div>
+            <div class="example">
+                <img src="a2.jpg" alt="Lonely Robot">
+                <p><b>Lonely Robot</b>: A futuristic robot reflecting in a neon-lit alley.</p>
+            </div>
         </div>
+        <h3>Want More? Connect with Our Telegram Bot!</h3>
+        <a href="https://t.me/Prompt2PicBot" class="button">Join Telegram Bot</a>
 
-        <div id="response-section" class="response" style="display: none;">
-            <p><strong>Generated Image:</strong></p>
-            <img id="generated-image" alt="Generated AI Image">
-        </div>
-
-        <div id="telegram-section" class="credits-section" style="display: none;">
-            <h2>Use Our Telegram Bot</h2>
-            <p>To generate more images, use our Telegram bot for unlimited access!</p>
-            <a href="https://t.me/Prompt2PicBot" class="button" target="_blank">Join Telegram Bot</a>
-            <p>If you need more credits, watch an ad below to earn 10 credits!</p>
-            <button class="button" id="watch-ad">Watch Ad</button>
-            <p id="credit-update" style="margin-top: 10px; color: green; display: none;">You earned 10 credits!</p>
-        </div>
-    </main>
-    <script>
-        // Hugging Face API Key
-        const HF_API_KEY = "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";
-        const HF_API_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-3.5-large-turbo";
-
-        // State to track if the user has generated an image
-        let hasGeneratedImage = false;
-
-        // Image Generation Handler
-        const generateForm = document.getElementById('generate-form');
-        const responseSection = document.getElementById('response-section');
-        const generatedImage = document.getElementById('generated-image');
-        const telegramSection = document.getElementById('telegram-section');
-
-        generateForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            // If the user already generated an image, redirect to Telegram bot
-            if (hasGeneratedImage) {
-                alert('You can only generate one image here. Please use our Telegram bot for unlimited access.');
-                return;
-            }
-
-            const prompt = document.getElementById('prompt').value;
-
-            // Show loading message
-            responseSection.style.display = 'block';
-            responseSection.innerHTML = `<p>Generating your image... Please wait.</p>`;
-
-            try {
-                const response = await fetch(HF_API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${HF_API_KEY}`,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ inputs: prompt })
-                });
-
-                if (!response.ok) throw new Error('Failed to generate the image.');
-
-                const blob = await response.blob();
-                const imageURL = URL.createObjectURL(blob);
-
-                // Display generated image
-                generatedImage.src = imageURL;
-                generatedImage.alt = "Generated image for prompt: " + prompt;
-                responseSection.innerHTML = `<p><strong>Generated Image:</strong></p>`;
-                responseSection.appendChild(generatedImage);
-
-                // Disable further image generation
-                hasGeneratedImage = true;
-                document.getElementById('generate-section').style.display = 'none';
-                telegramSection.style.display = 'block';
-            } catch (error) {
-                responseSection.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
-            }
-        });
-
-        // Watch Ad Handler
-        const watchAdButton = document.getElementById('watch-ad');
-        const creditUpdate = document.getElementById('credit-update');
-
-        watchAdButton.addEventListener('click', () => {
-            // Simulate ad watching
-            alert('Simulating ad watching...');
-            creditUpdate.style.display = 'block';
-        });
-    </script>
+        <h3>Earn Credits by Watching Ads</h3>
+        <p>Earn 10 credits instantly by watching an ad!</p>
+        <a href="#" class="button">Watch Ad to Earn Credits</a>
+    </div>
 </body>
 </html>
