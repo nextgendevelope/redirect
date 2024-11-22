@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +11,7 @@
             margin: 0;
             padding: 0;
             text-align: center;
-            padding-bottom: 40px; /* To ensure space for fixed footer */
+            padding-bottom: 40px; /* To ensure space for footer */
         }
         
         h1, h2 {
@@ -83,7 +81,6 @@
             text-align: center;
         }
 
-        /* Fixed Footer (Copyright) */
         .footer {
             background-color: #333;
             color: white;
@@ -108,9 +105,26 @@
             background-color: #006f99;
         }
 
-        /* Add some spacing for sections */
         .section {
             margin-bottom: 30px;
+        }
+
+        .faq-container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .faq-container h3 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .faq-container p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -153,12 +167,33 @@
             <p>Prompt2Pic Bot is an AI-powered image generation tool that allows you to create stunning and unique images simply by entering a description. Whether you're looking to generate artwork, create social media content, or experiment with new ideas, our bot is here to bring your visions to life. Just provide a prompt and let AI do the rest!</p>
         </div>
 
+        <!-- FAQ Section -->
+        <div class="section faq-container">
+            <h2>Frequently Asked Questions (FAQ)</h2>
+            <div>
+                <h3>What is Prompt2Pic Bot?</h3>
+                <p>Prompt2Pic Bot is an AI-based image generation tool that lets users create images by providing a description. The bot uses advanced AI algorithms to generate realistic or artistic images based on the prompts provided by the user.</p>
+            </div>
+            <div>
+                <h3>How do I generate images with the bot?</h3>
+                <p>Simply type a prompt describing the image you want to create, and the bot will generate the image for you. You can also upload your own selfies or create images using predefined styles or themes.</p>
+            </div>
+            <div>
+                <h3>Is the bot free to use?</h3>
+                <p>The bot is free to use initially, but premium features like NSFW content and specific styles are available for paying users. You can also earn credits by watching ads or through other promotional activities.</p>
+            </div>
+            <div>
+                <h3>How can I contact support?</h3>
+                <p>If you have any questions or need assistance, feel free to reach out to us via email at <a href="mailto:prompt2pic@gmail.com">support@prompt2pic.com</a>.</p>
+            </div>
+        </div>
+
         <!-- Telegram Bot Link -->
         <a href="https://t.me/Prompt2picbot" class="telegram-button">Join Telegram Bot</a>
 
     </div>
 
-    <!-- Footer (Copyright Section at the Bottom) -->
+    <!-- Footer (Copyright Section below FAQ) -->
     <div class="footer">
         <p>&copy; 2024 Prompt2Pic Bot. All rights reserved.</p>
     </div>
