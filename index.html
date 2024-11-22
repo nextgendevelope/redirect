@@ -103,17 +103,23 @@
         .telegram-button:hover {
             background-color: #006f99;
         }
+
+        /* Add some spacing for sections */
+        .section {
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Bot DP (Profile Picture) -->
+        <!-- Bot Name and Profile Picture -->
+        <h1>Prompt2Pic Bot</h1>
         <img src="tgdp.webp" alt="Prompt2Pic Bot DP" class="bot-dp">
 
-        <h1>Discover Incredible AI-Generated Artworks</h1>
         <p>Your creative ideas, brought to life by AI.</p>
 
+        <!-- Buttons for Credits, Privacy Policy, and Terms of Service -->
         <div class="buttons-container">
             <a href="#earn-credits" class="button">Earn Credits</a>
             <a href="privacy-policy.html" class="button">Privacy Policy</a>
@@ -121,23 +127,25 @@
         </div>
 
         <!-- Image Gallery -->
-        <h2>AI Generated Art Examples</h2>
-        <div class="image-row">
-            <img src="a1.jpg" alt="Example 1">
-            <img src="a2.jpg" alt="Example 2">
-            <img src="a3.jpg" alt="Example 3">
-            <img src="a4.jpg" alt="Example 4">
-            <img src="a5.jpg" alt="Example 5">
-            <img src="a6.jpg" alt="Example 6">
+        <div class="section">
+            <h2>AI Generated Art Examples</h2>
+            <div class="image-row">
+                <img src="a1.jpg" alt="Example 1">
+                <img src="a2.jpg" alt="Example 2">
+                <img src="a3.jpg" alt="Example 3">
+                <img src="a4.jpg" alt="Example 4">
+                <img src="a5.jpg" alt="Example 5">
+                <img src="a6.jpg" alt="Example 6">
+            </div>
         </div>
 
         <!-- Watch Ad Section -->
-        <div class="watch-ad-container">
+        <div class="section watch-ad-container">
             <button class="button">Watch Ad for 10 Credits</button>
         </div>
 
         <!-- Bot Description -->
-        <div class="bot-description">
+        <div class="section bot-description">
             <h2>About Prompt2Pic Bot</h2>
             <p>Prompt2Pic Bot is an AI-powered image generation tool that allows you to create stunning and unique images simply by entering a description. Whether you're looking to generate artwork, create social media content, or experiment with new ideas, our bot is here to bring your visions to life. Just provide a prompt and let AI do the rest!</p>
         </div>
@@ -147,7 +155,7 @@
 
     </div>
 
-    <!-- Footer -->
+    <!-- Footer (Copyright Section below FAQ) -->
     <div class="footer">
         <p>&copy; 2024 Prompt2Pic Bot. All rights reserved.</p>
     </div>
