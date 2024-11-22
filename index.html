@@ -44,16 +44,19 @@
         .button:hover {
             background: #45a049;
         }
-        .earn-credits {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .response {
+        .response, .credits-section {
             margin-top: 20px;
             padding: 15px;
+            border-radius: 5px;
+        }
+        .response {
             border: 1px solid #4CAF50;
             background: #e7f5e7;
-            border-radius: 5px;
+        }
+        .credits-section {
+            text-align: center;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
         }
         #generated-image {
             max-width: 100%;
@@ -65,22 +68,28 @@
 <body>
     <header>
         <h1>Prompt2Pic - AI Image Generator</h1>
-        <p>Generate images with AI and earn credits by watching ads!</p>
+        <p>Generate an image with AI or join our Telegram bot for unlimited access!</p>
     </header>
     <main>
-        <h2>Generate an Image</h2>
-        <form id="generate-form">
-            <label for="prompt">Enter your prompt:</label><br>
-            <input type="text" id="prompt" name="prompt" placeholder="e.g., A futuristic city at sunset" required style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc;"><br>
-            <button class="button" type="submit">Generate Image</button>
-        </form>
+        <div id="generate-section">
+            <h2>Generate an Image</h2>
+            <form id="generate-form">
+                <label for="prompt">Enter your prompt:</label><br>
+                <input type="text" id="prompt" name="prompt" placeholder="e.g., A futuristic city at sunset" required style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc;"><br>
+                <button class="button" type="submit">Generate Image</button>
+            </form>
+        </div>
+
         <div id="response-section" class="response" style="display: none;">
             <p><strong>Generated Image:</strong></p>
             <img id="generated-image" alt="Generated AI Image">
         </div>
-        <h2>Earn Credits</h2>
-        <div class="earn-credits">
-            <p>Watch an ad to earn 10 credits!</p>
+
+        <div id="telegram-section" class="credits-section" style="display: none;">
+            <h2>Use Our Telegram Bot</h2>
+            <p>To generate more images, use our Telegram bot for unlimited access!</p>
+            <a href="https://t.me/Prompt2PicBot" class="button" target="_blank">Join Telegram Bot</a>
+            <p>If you need more credits, watch an ad below to earn 10 credits!</p>
             <button class="button" id="watch-ad">Watch Ad</button>
             <p id="credit-update" style="margin-top: 10px; color: green; display: none;">You earned 10 credits!</p>
         </div>
@@ -90,13 +99,24 @@
         const HF_API_KEY = "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";
         const HF_API_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-3.5-large-turbo";
 
+        // State to track if the user has generated an image
+        let hasGeneratedImage = false;
+
         // Image Generation Handler
         const generateForm = document.getElementById('generate-form');
         const responseSection = document.getElementById('response-section');
         const generatedImage = document.getElementById('generated-image');
+        const telegramSection = document.getElementById('telegram-section');
 
         generateForm.addEventListener('submit', async (event) => {
             event.preventDefault();
+
+            // If the user already generated an image, redirect to Telegram bot
+            if (hasGeneratedImage) {
+                alert('You can only generate one image here. Please use our Telegram bot for unlimited access.');
+                return;
+            }
+
             const prompt = document.getElementById('prompt').value;
 
             // Show loading message
@@ -123,6 +143,11 @@
                 generatedImage.alt = "Generated image for prompt: " + prompt;
                 responseSection.innerHTML = `<p><strong>Generated Image:</strong></p>`;
                 responseSection.appendChild(generatedImage);
+
+                // Disable further image generation
+                hasGeneratedImage = true;
+                document.getElementById('generate-section').style.display = 'none';
+                telegramSection.style.display = 'block';
             } catch (error) {
                 responseSection.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
             }
