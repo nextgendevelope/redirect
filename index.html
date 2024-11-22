@@ -3,30 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompt2Pic Bot</title>
+    <title>Prompt2Pic - AI Image Generator</title>
     <style>
-        /* Basic page layout and style */
+        /* Global Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fb;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            box-sizing: border-box;
         }
 
+        /* Header Styles */
         header {
-            background-color: #333;
+            background-color: #3b9fcf;
             color: white;
+            padding: 30px;
             text-align: center;
-            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
             margin: 0;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
+        /* Menu Bar */
         .menu-bar {
             background-color: #444;
-            padding: 10px 0;
+            padding: 12px 0;
             text-align: center;
         }
 
@@ -35,32 +42,143 @@
             margin: 0 20px;
             text-decoration: none;
             font-size: 16px;
+            font-weight: bold;
         }
 
         .menu-bar a:hover {
+            color: #f4f7fb;
             text-decoration: underline;
         }
 
+        /* Main Content */
         .content {
-            padding: 20px;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
-        .section {
-            display: none;
+        .content h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 20px;
         }
 
-        .section.active {
-            display: block;
+        .bot-section {
+            margin-bottom: 40px;
         }
 
+        .bot-section img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            border: 5px solid #3b9fcf;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bot-section h2 {
+            margin-top: 10px;
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .bot-section button {
+            background-color: #00b8d4;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .bot-section button:hover {
+            background-color: #0097a7;
+        }
+
+        /* Example Images Section */
+        .examples {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .examples img {
+            width: 280px;
+            height: 180px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .examples img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Earn Credits Section */
+        .earn-credits-section {
+            background-color: #28a745;
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .earn-credits-section button {
+            background-color: #f0ad4e;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .earn-credits-section button:hover {
+            background-color: #ec971f;
+        }
+
+        /* FAQ Section */
+        .faq {
+            margin-top: 50px;
+            background-color: #f7f7f7;
+            padding: 30px;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .faq p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Footer */
         footer {
             background-color: #333;
             color: white;
+            padding: 15px;
             text-align: center;
-            padding: 10px;
             position: fixed;
             bottom: 0;
             width: 100%;
+            font-size: 0.9rem;
         }
 
         footer a {
@@ -71,75 +189,11 @@
         footer a:hover {
             text-decoration: underline;
         }
-
-        .earn-credits-section {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .earn-credits-section button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .earn-credits-section button:hover {
-            background-color: #218838;
-        }
-
-        /* Style for example images */
-        .examples img {
-            width: 100%;
-            height: auto;
-            border: 2px solid #ddd;
-            margin-top: 10px;
-        }
-
-        /* Style for the DP and Telegram Bot section */
-        .bot-section {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .bot-section img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-        }
-
-        .bot-section button {
-            background-color: #0088cc;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .bot-section button:hover {
-            background-color: #0077b3;
-        }
-
-        /* FAQ Section */
-        .faq {
-            margin-top: 20px;
-        }
-
-        .faq h3 {
-            font-size: 18px;
-        }
-
-        .faq p {
-            font-size: 16px;
-        }
-
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
+    <!-- Header -->
     <header>
         <h1>Welcome to Prompt2Pic!</h1>
     </header>
@@ -151,63 +205,45 @@
         <a href="javascript:void(0)" onclick="showSection('termsOfService')">Terms of Service</a>
     </div>
 
-    <!-- Main Content Section -->
+    <!-- Main Content -->
     <div class="content">
+        <!-- Bot Section -->
+        <div class="bot-section">
+            <img src="tgdp.webp" alt="Bot DP">
+            <h2>Prompt2Pic - AI Image Generator</h2>
+            <p>Generate AI-powered images directly through our Telegram bot! Upload a selfie, describe the image you want, and let our AI work its magic.</p>
+            <button onclick="window.location.href='https://t.me/Prompt2PicBot'">Join Telegram Bot</button>
+        </div>
+
+        <!-- Example Images Section -->
+        <div class="examples">
+            <h3>Examples of Generated Images</h3>
+            <img src="a1.jpg" alt="Example Image 1">
+            <img src="a2.jpg" alt="Example Image 2">
+            <img src="a3.jpg" alt="Example Image 3">
+            <img src="a4.jpg" alt="Example Image 4">
+            <img src="a5.jpg" alt="Example Image 5">
+            <img src="a6.jpg" alt="Example Image 6">
+        </div>
+
         <!-- Earn Credits Section -->
-        <div id="earnCredits" class="section">
-            <h2>Earn Credits</h2>
-            <div class="earn-credits-section">
-                <p>Earn 10 credits by watching an ad!</p>
-                <button onclick="alert('Redirecting to watch ad...')">Watch Ad</button>
-            </div>
+        <div class="earn-credits-section">
+            <h2>Earn 10 Credits</h2>
+            <p>Watch an ad to earn 10 credits, which you can use to generate images on our Telegram bot.</p>
+            <button onclick="alert('Redirecting to watch ad...')">Watch Ad</button>
         </div>
 
-        <!-- Privacy Policy Section -->
-        <div id="privacyPolicy" class="section">
-            <h2>Privacy Policy</h2>
-            <p><strong>Effective Date:</strong> [Insert Date]</p>
-            <p>At Prompt2Pic Bot, we value the privacy of our users and are committed to protecting the information you share with us...</p>
-            <p><strong>Contact Us:</strong> prompt2pic@gmail.com</p>
-        </div>
-
-        <!-- Terms of Service Section -->
-        <div id="termsOfService" class="section">
-            <h2>Terms of Service</h2>
-            <p><strong>Effective Date:</strong> [Insert Date]</p>
-            <p>By using the Prompt2Pic Bot ("the Bot"), you agree to these Terms of Service. Please read them carefully...</p>
-            <p><strong>Contact Us:</strong> prompt2pic@gmail.com</p>
-        </div>
-
-        <!-- Main Section Below Menu -->
-        <div class="content">
-            <!-- Bot DP and Description Section -->
-            <div class="bot-section">
-                <img src="tgdp.webp" alt="Bot DP">
-                <h2>Prompt2Pic Bot</h2>
-                <p>Generate AI-powered images directly through our Telegram bot! Simply upload a photo and describe your desired image.</p>
-                <button onclick="window.location.href='https://t.me/Prompt2PicBot'">Join Telegram Bot</button>
-            </div>
-
-            <!-- Example Images Section -->
-            <div class="examples">
-                <h3>Examples of Generated Images</h3>
-                <img src="a2.jpg" alt="Example Image 1">
-                <img src="a4.jpg" alt="Example Image 2">
-                <img src="a6.jpg" alt="Example Image 3">
-            </div>
-
-            <!-- FAQ Section -->
-            <div class="faq">
-                <h3>FAQ</h3>
-                <p><strong>How do I earn credits?</strong> You can earn credits by watching ads or using our Telegram bot.</p>
-                <p><strong>How can I generate images?</strong> Join our Telegram bot, upload your selfies, and describe the image you want!</p>
-            </div>
+        <!-- FAQ Section -->
+        <div class="faq">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>How do I earn credits?</strong> You can earn credits by watching ads or using our Telegram bot to generate images.</p>
+            <p><strong>How can I generate images?</strong> Join our Telegram bot, upload a selfie, and describe the image you want!</p>
         </div>
     </div>
 
-    <!-- Footer Section -->
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Prompt2Pic. All rights reserved.</p>
+        <p>&copy; 2024 Prompt2Pic. All rights reserved. <a href="mailto:prompt2pic@gmail.com">Contact Us</a></p>
     </footer>
 
     <script>
@@ -222,7 +258,7 @@
                 section.classList.add('active');
             }
         }
-        
+
         // Initially show the Earn Credits section
         showSection('earnCredits');
     </script>
