@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompt2Pic Bot</title>
-    <meta name="description" content="Prompt2Pic - Earn credits through ads for AI-generated images">
+    <title>Prompt2Pic Bot - AI-Powered Image Generation</title>
+    <meta name="description" content="Create stunning AI-generated images with Prompt2Pic Bot. Learn how to use the bot, earn credits, and explore our AI features.">
     <style>
-        /* General body styling */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -16,7 +15,6 @@
             text-align: center;
         }
 
-        /* Centered welcome section */
         .header {
             padding: 20px;
             background-color: #4CAF50;
@@ -34,88 +32,46 @@
             margin: 0;
         }
 
-        /* Main container for page sections */
         .main-container {
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
         }
 
-        /* Section for generating image */
-        .generate-image-section {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        .generate-image-section button {
-            background-color: #FF5722;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .generate-image-section button:hover {
-            background-color: #E64A19;
-        }
-
-        .generate-image-section img {
-            display: none;
-            width: 100%;
-            margin-top: 20px;
-            border-radius: 8px;
-        }
-
-        /* Section for other content (ads, bot info, examples) */
         .content-section {
-            text-align: center;
-            margin-top: 20px;
             background-color: white;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
             border-radius: 8px;
             width: 80%;
+            margin-bottom: 20px;
         }
 
         .content-section h2 {
             color: #4CAF50;
         }
 
-        .examples {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .examples img {
-            width: 200px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .earn-credits button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
+        .about-section {
             margin-top: 20px;
         }
 
-        .earn-credits button:hover {
-            background-color: #45a049;
+        .faq-section {
+            margin-top: 20px;
+            text-align: left;
+            width: 70%;
+            margin: 20px auto;
+        }
+
+        .faq-section h3 {
+            color: #4CAF50;
+        }
+
+        .faq-item {
+            padding: 10px;
+            background-color: #f4f4f4;
+            margin-bottom: 10px;
+            border-radius: 5px;
         }
 
         .join-telegram a {
@@ -126,7 +82,6 @@
             border-radius: 5px;
             font-size: 16px;
             display: inline-block;
-            margin-top: 20px;
         }
 
         .join-telegram a:hover {
@@ -134,95 +89,56 @@
         }
 
     </style>
-    <script>
-        // Track if the image generation has been used
-        document.addEventListener("DOMContentLoaded", function () {
-            const generateImageSection = document.getElementById("generateImageSection");
-            const contentSection = document.getElementById("contentSection");
-            const isImageGenerated = localStorage.getItem("imageGenerated");
-
-            // If the user has generated an image before, hide the generate section
-            if (isImageGenerated) {
-                generateImageSection.style.display = "none";
-                contentSection.style.display = "block"; // Show the content section
-            } else {
-                generateImageSection.style.display = "block";
-                contentSection.style.display = "none"; // Hide the content section initially
-            }
-        });
-
-        // Function to handle image generation
-        async function generateImage() {
-            const generateButton = document.getElementById("generateButton");
-            generateButton.innerText = "Generating...";
-            generateButton.disabled = true;
-
-            const response = await fetch("https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-3.5-large-turbo", {
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer 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",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    inputs: "A magical sunset over a futuristic city with flying cars",
-                })
-            });
-
-            if (response.ok) {
-                const blob = await response.blob();
-                const imgURL = URL.createObjectURL(blob);
-                document.getElementById("generatedImage").src = imgURL;
-                document.getElementById("generatedImage").style.display = "block";
-
-                // Store the image generation status
-                localStorage.setItem("imageGenerated", "true");
-
-                // Hide the generate section and show the content section
-                document.getElementById("generateImageSection").style.display = "none";
-                document.getElementById("contentSection").style.display = "block";
-            } else {
-                alert("Failed to generate image. Please try again later.");
-            }
-        }
-    </script>
 </head>
 <body>
-    <!-- Welcome Section with Bot DP -->
+
+    <!-- Welcome Section -->
     <div class="header">
         <img src="tgdp.webp" alt="Prompt2Pic Bot">
         <h1>Welcome to Prompt2Pic Bot</h1>
     </div>
 
-    <!-- Main content section -->
     <div class="main-container">
-        <!-- Generate Image Section -->
-        <div class="generate-image-section" id="generateImageSection">
-            <h2>Generate Your First AI Image</h2>
-            <button id="generateButton" onclick="generateImage()">Generate Image</button>
-            <img id="generatedImage" src="" alt="Generated AI Image">
+        <!-- About Section -->
+        <div class="content-section">
+            <h2>What is Prompt2Pic Bot?</h2>
+            <p>Prompt2Pic Bot is an AI-powered image generation service that allows users to create stunning images by simply describing what they want. The bot uses cutting-edge technology to bring your ideas to life, offering a wide range of styles and customization options.</p>
         </div>
 
-        <!-- Other Content Section (Ads, Bot Info, Examples) -->
-        <div class="content-section" id="contentSection">
-            <h2>Explore Our AI-Generated Images</h2>
-            <div class="examples">
-                <img src="a6.jpg" alt="Example 1">
-                <img src="a4.jpg" alt="Example 2">
-                <img src="a2.jpg" alt="Example 3">
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <div class="faq-item">
+                <strong>How do I use the Prompt2Pic Bot?</strong>
+                <p>Simply join the Telegram bot and follow the instructions to provide a prompt for your image. The bot will generate it for you instantly.</p>
             </div>
-
-            <div class="earn-credits">
-                <button>Watch Ad to Earn 10 Credits</button>
+            <div class="faq-item">
+                <strong>What is the cost of using the bot?</strong>
+                <p>The bot is free to use, but you can earn credits by watching ads or purchase premium features for additional benefits.</p>
             </div>
-
-            <div class="join-telegram">
-                <h2>Join Our Telegram Bot</h2>
-                <p>Generate unlimited images and enjoy more features on Telegram!</p>
-                <a href="https://t.me/Prompt2PicBot" target="_blank">Join Telegram Bot</a>
+            <div class="faq-item">
+                <strong>What kinds of images can I generate?</strong>
+                <p>You can generate anything from fantasy landscapes to futuristic cities, portraits, and more. The possibilities are endless!</p>
             </div>
+        </div>
 
-            <p>Prompt2Pic allows you to generate unique AI-powered images. Just give a prompt, and watch as your creative ideas come to life!</p>
+        <!-- Join Telegram Section -->
+        <div class="join-telegram">
+            <h2>Join Our Telegram Bot</h2>
+            <p>Generate unlimited images and enjoy more features on Telegram! Join the community now and start creating!</p>
+            <a href="https://t.me/Prompt2PicBot" target="_blank">Join Telegram Bot</a>
+        </div>
+
+        <!-- Example Images -->
+        <div class="content-section">
+            <h2>Examples of Generated Images</h2>
+            <div>
+                <img src="a6.jpg" alt="Example 1" width="300px">
+                <img src="a4.jpg" alt="Example 2" width="300px">
+                <img src="a2.jpg" alt="Example 3" width="300px">
+            </div>
         </div>
     </div>
+
 </body>
 </html>
