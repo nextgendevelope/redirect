@@ -11,30 +11,84 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            background-color: #f9f9f9;
         }
         header {
             background: #4CAF50;
             color: #fff;
-            padding: 1rem 0;
+            padding: 1.5rem 0;
             text-align: center;
         }
         main {
             padding: 2rem;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            text-align: justify;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         footer {
             background: #333;
             color: #fff;
             text-align: center;
             padding: 1rem 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+            margin-top: 2rem;
         }
         h1, h2 {
             color: #333;
+        }
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            color: #fff;
+            background: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .button:hover {
+            background: #45a049;
+        }
+        .demo-section {
+            margin: 2rem 0;
+            text-align: center;
+            background: #f0f0f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+        .demo-section input[type="text"] {
+            width: 70%;
+            padding: 0.75rem;
+            margin-right: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .demo-section .button {
+            padding: 0.75rem 1rem;
+        }
+        .testimonial {
+            margin: 2rem 0;
+        }
+        .testimonial blockquote {
+            font-style: italic;
+            margin: 1rem 0;
+            color: #555;
+            border-left: 5px solid #4CAF50;
+            padding-left: 1rem;
+        }
+        .contact-section {
+            margin: 2rem 0;
+            text-align: center;
+            background: #e7f5e7;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+        .contact-section a {
+            color: #4CAF50;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -50,25 +104,45 @@
             Simply provide a text description, and let the magic happen! Whether you're creating art for fun, 
             designing graphics for work, or just experimenting, Prompt2Pic has you covered.
         </p>
-        <h2>How It Works</h2>
-        <ol>
-            <li>Join our Telegram bot using the link provided.</li>
-            <li>Earn credits by interacting with our system or inviting friends.</li>
-            <li>Use credits to generate AI-powered images directly in the chat.</li>
-        </ol>
+
+        <h2>Demo - Try It Out!</h2>
+        <div class="demo-section">
+            <p>Type a description below and click "Generate" to see the magic!</p>
+            <form action="#" method="post">
+                <input type="text" placeholder="Describe your image (e.g., a sunset over the ocean)" required>
+                <button class="button" type="submit">Generate</button>
+            </form>
+            <p><small>This is a demo. Join our Telegram bot for the full experience!</small></p>
+        </div>
+
         <h2>Why Choose Us?</h2>
         <ul>
             <li>High-quality AI-generated images in seconds.</li>
             <li>Easy-to-use interface designed for everyone.</li>
             <li>Earn credits through various activities, making it cost-effective!</li>
         </ul>
+
+        <h2>What Our Users Say</h2>
+        <div class="testimonial">
+            <blockquote>
+                "Prompt2Pic has transformed how I create digital art. It's quick, fun, and incredibly powerful!"
+                <br><strong>- A Happy User</strong>
+            </blockquote>
+            <blockquote>
+                "I was amazed by the quality of the AI-generated images. This bot is a game-changer!"
+                <br><strong>- Another User</strong>
+            </blockquote>
+        </div>
+
+        <h2>Join Us</h2>
         <p>
-            Discover the world of AI creativity with Prompt2Pic. Join now and unleash your imagination!
+            Ready to experience the future of AI-generated images? 
+            <a class="button" href="https://t.me/Prompt2PicBot">Join Our Telegram Bot</a>
         </p>
     </main>
     <footer>
         <p>&copy; 2024 Prompt2Pic. All Rights Reserved.</p>
-        <p><a href="https://t.me/Prompt2PicBot" style="color: #fff;">Join Our Telegram Bot</a></p>
+        <p><a href="https://t.me/Prompt2PicBot" style="color: #fff;">Contact Us</a></p>
     </footer>
 </body>
 </html>
