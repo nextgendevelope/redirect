@@ -3,171 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompt2Pic Bot - AI-Powered Image Generation</title>
-    <meta name="description" content="Create stunning AI-generated images with Prompt2Pic Bot. Learn how to use the bot, earn credits, and explore our AI features.">
+    <title>Prompt2Pic Bot</title>
     <style>
+        /* Basic page layout and style */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-            text-align: center;
+            background-color: #f4f4f9;
         }
 
-        .header {
-            padding: 20px;
-            background-color: #4CAF50;
+        header {
+            background-color: #333;
             color: white;
+            text-align: center;
+            padding: 15px;
         }
 
-        .header img {
-            border-radius: 50%;
-            width: 100px;
-            margin-bottom: 10px;
-        }
-
-        .header h1 {
-            font-size: 2rem;
+        header h1 {
             margin: 0;
         }
 
-        .main-container {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .content-section {
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            width: 80%;
-            margin-bottom: 20px;
-        }
-
-        .content-section h2 {
-            color: #4CAF50;
-        }
-
-        .join-telegram a {
-            text-decoration: none;
-            color: white;
-            background-color: #0088cc;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            display: inline-block;
-        }
-
-        .join-telegram a:hover {
-            background-color: #006699;
-        }
-
-        .watch-ad-button {
-            background-color: #f39c12;
-            padding: 15px 30px;
-            border-radius: 5px;
-            font-size: 18px;
-            color: white;
-            text-decoration: none;
-            margin-top: 30px;
-            display: inline-block;
-        }
-
-        .watch-ad-button:hover {
-            background-color: #e67e22;
-        }
-
-        .footer {
-            margin-top: 40px;
-            background-color: #333;
-            color: white;
+        .menu-bar {
+            background-color: #444;
             padding: 10px 0;
             text-align: center;
         }
 
-        .faq-section {
-            margin-top: 20px;
-            text-align: left;
-            width: 70%;
-            margin: 20px auto;
+        .menu-bar a {
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+            font-size: 16px;
         }
 
-        .faq-section h3 {
-            color: #4CAF50;
+        .menu-bar a:hover {
+            text-decoration: underline;
         }
 
-        .faq-item {
+        .content {
+            padding: 20px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
             padding: 10px;
-            background-color: #f4f4f4;
-            margin-bottom: 10px;
-            border-radius: 5px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .earn-credits-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .earn-credits-section button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .earn-credits-section button:hover {
+            background-color: #218838;
+        }
+
+        /* Style for example images */
+        .examples img {
+            width: 100%;
+            height: auto;
+            border: 2px solid #ddd;
+            margin-top: 10px;
+        }
+
+        /* Style for the DP and Telegram Bot section */
+        .bot-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .bot-section img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .bot-section button {
+            background-color: #0088cc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .bot-section button:hover {
+            background-color: #0077b3;
+        }
+
+        /* FAQ Section */
+        .faq {
+            margin-top: 20px;
+        }
+
+        .faq h3 {
+            font-size: 18px;
+        }
+
+        .faq p {
+            font-size: 16px;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Welcome Section -->
-    <div class="header">
-        <img src="tgdp.webp" alt="Prompt2Pic Bot">
-        <h1>Welcome to Prompt2Pic Bot</h1>
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to Prompt2Pic!</h1>
+    </header>
+
+    <!-- Menu Bar -->
+    <div class="menu-bar">
+        <a href="javascript:void(0)" onclick="showSection('earnCredits')">Earn Credits</a>
+        <a href="javascript:void(0)" onclick="showSection('privacyPolicy')">Privacy Policy</a>
+        <a href="javascript:void(0)" onclick="showSection('termsOfService')">Terms of Service</a>
     </div>
 
-    <div class="main-container">
-        <!-- About Section -->
-        <div class="content-section">
-            <h2>What is Prompt2Pic Bot?</h2>
-            <p>Prompt2Pic Bot is an AI-powered image generation service that allows users to create stunning images by simply describing what they want. The bot uses cutting-edge technology to bring your ideas to life, offering a wide range of styles and customization options.</p>
+    <!-- Main Content Section -->
+    <div class="content">
+        <!-- Earn Credits Section -->
+        <div id="earnCredits" class="section">
+            <h2>Earn Credits</h2>
+            <div class="earn-credits-section">
+                <p>Earn 10 credits by watching an ad!</p>
+                <button onclick="alert('Redirecting to watch ad...')">Watch Ad</button>
+            </div>
         </div>
 
-        <!-- Watch Ad Section -->
-        <div class="content-section">
-            <h2>Earn 10 Credits by Watching an Ad!</h2>
-            <a href="#" class="watch-ad-button">Watch Ad</a>
+        <!-- Privacy Policy Section -->
+        <div id="privacyPolicy" class="section">
+            <h2>Privacy Policy</h2>
+            <p><strong>Effective Date:</strong> [Insert Date]</p>
+            <p>At Prompt2Pic Bot, we value the privacy of our users and are committed to protecting the information you share with us...</p>
+            <p><strong>Contact Us:</strong> prompt2pic@gmail.com</p>
         </div>
 
-        <!-- Join Telegram Section -->
-        <div class="join-telegram">
-            <h2>Join Our Telegram Bot</h2>
-            <p>Generate unlimited images and enjoy more features on Telegram! Join the community now and start creating!</p>
-            <a href="https://t.me/Prompt2PicBot" target="_blank">Join Telegram Bot</a>
+        <!-- Terms of Service Section -->
+        <div id="termsOfService" class="section">
+            <h2>Terms of Service</h2>
+            <p><strong>Effective Date:</strong> [Insert Date]</p>
+            <p>By using the Prompt2Pic Bot ("the Bot"), you agree to these Terms of Service. Please read them carefully...</p>
+            <p><strong>Contact Us:</strong> prompt2pic@gmail.com</p>
         </div>
 
-        <!-- Example Images -->
-        <div class="content-section">
-            <h2>Examples of Generated Images</h2>
-            <div>
-                <img src="a6.jpg" alt="Example 1" width="300px">
-                <img src="a4.jpg" alt="Example 2" width="300px">
-                <img src="a2.jpg" alt="Example 3" width="300px">
+        <!-- Main Section Below Menu -->
+        <div class="content">
+            <!-- Bot DP and Description Section -->
+            <div class="bot-section">
+                <img src="tgdp.webp" alt="Bot DP">
+                <h2>Prompt2Pic Bot</h2>
+                <p>Generate AI-powered images directly through our Telegram bot! Simply upload a photo and describe your desired image.</p>
+                <button onclick="window.location.href='https://t.me/Prompt2PicBot'">Join Telegram Bot</button>
+            </div>
+
+            <!-- Example Images Section -->
+            <div class="examples">
+                <h3>Examples of Generated Images</h3>
+                <img src="a2.jpg" alt="Example Image 1">
+                <img src="a4.jpg" alt="Example Image 2">
+                <img src="a6.jpg" alt="Example Image 3">
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq">
+                <h3>FAQ</h3>
+                <p><strong>How do I earn credits?</strong> You can earn credits by watching ads or using our Telegram bot.</p>
+                <p><strong>How can I generate images?</strong> Join our Telegram bot, upload your selfies, and describe the image you want!</p>
             </div>
         </div>
     </div>
 
-    <!-- FAQ Section -->
-    <div class="faq-section">
-        <h3>Frequently Asked Questions (FAQ)</h3>
-        <div class="faq-item">
-            <strong>How do I use the Prompt2Pic Bot?</strong>
-            <p>Simply join the Telegram bot and follow the instructions to provide a prompt for your image. The bot will generate it for you instantly.</p>
-        </div>
-        <div class="faq-item">
-            <strong>What is the cost of using the bot?</strong>
-            <p>The bot is free to use, but you can earn credits by watching ads.</p>
-        </div>
-        <div class="faq-item">
-            <strong>What kinds of images can I generate?</strong>
-            <p>You can generate anything from fantasy landscapes to futuristic cities, portraits, and more. The possibilities are endless!</p>
-        </div>
-    </div>
-
     <!-- Footer Section -->
-    <div class="footer">
-        <p>&copy; 2024 Prompt2Pic Bot. All Rights Reserved.</p>
-    </div>
+    <footer>
+        <p>&copy; 2024 Prompt2Pic. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Show the clicked section
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.classList.add('active');
+            }
+        }
+        
+        // Initially show the Earn Credits section
+        showSection('earnCredits');
+    </script>
 
 </body>
 </html>
